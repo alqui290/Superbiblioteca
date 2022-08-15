@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Publico</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div><a><button>Logar</button></a></div>
+        <div></div>
     </body>
 </html>

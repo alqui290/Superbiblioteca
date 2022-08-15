@@ -9,10 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Area publica</title>
+        <title>Lista de emprestimos</title>
     </head>
     <body>
-        <div><a><button>Logar</button></a></div>
-        <div></div>
     </body>
 </html>
