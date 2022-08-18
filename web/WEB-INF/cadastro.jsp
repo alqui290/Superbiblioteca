@@ -12,5 +12,13 @@
         <title>Cadastrar novo usuario</title>
     </head>
     <body>
+        <form method="post" action="CadastrarUsuarios">
+            Nome:<input type="text" name="nome" required>
+            Email:<input type="email" name="email" required>
+            Nome de Usuario:<input type="text" name="username" required>
+            Senha:<input type="password" name="senha" required>
+            Idade:<input type="number" name="idade" min=16 required>
+            <input type="submit">
+        </form>
     </body>
 </html>

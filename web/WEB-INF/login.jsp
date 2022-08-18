@@ -9,9 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form method="post" action="Login">
+            Usename:<input type="text" name="user" required>
+            Senha:<input type="password" name="senha" required>
+            <label>Manter-me Logado</label>
+            <input type="checkbox" name="manter" value="s"/>
+            <input type="submit" value="Logar">
+        </form>
     </body>
 </html>

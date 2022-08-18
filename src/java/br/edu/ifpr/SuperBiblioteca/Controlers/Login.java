@@ -4,12 +4,18 @@
  */
 package br.edu.ifpr.SuperBiblioteca.Controlers;
 
+import br.edu.ifpr.SuperBiblioteca.Entities.Usuarios;
+import br.edu.ifpr.SuperBiblioteca.Models.UsuarioModel;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,25 +32,7 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,7 +46,8 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("WEB-INF/login.jsp").
+                forward(request, response);
     }
 
     /**
@@ -72,7 +61,47 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        
+        try {
+            String user, senha;
+        
+            senha = request.getParameter("senha");
+            user= request.getParameter("user");
+
+            UsuarioModel model = new UsuarioModel();
+            Usuarios u = model.logar(new Usuarios(user, senha));
+            
+            if(u == null){
+                response.sendRedirect("Login");
+            }
+            else{
+                HttpSession sessao = request.getSession(true);
+                sessao.setAttribute("autenticado", true);
+                
+                if("s".equals(request.getParameter("manter"))){
+                    Cookie cookie = new Cookie("manterLogado", "manter");
+                    cookie.setMaxAge(60*60*24*30);
+                    response.addCookie(cookie);
+                    Cookie biblio = new Cookie("biblio", String.valueOf(u.isBiblio()));
+                    cookie.setMaxAge(60*60*24*30);
+                    response.addCookie(biblio);
+                    Cookie adm = new Cookie("adm", String.valueOf(u.isAdm()));
+                    cookie.setMaxAge(60*60*24*30);
+                    response.addCookie(adm);
+                }
+                else{
+                    Cookie biblio = new Cookie("biblio", String.valueOf(u.isBiblio()));
+                    response.addCookie(biblio);
+                    Cookie adm = new Cookie("adm", String.valueOf(u.isAdm()));
+                    response.addCookie(adm);
+                }
+                
+                response.sendRedirect("Menu");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

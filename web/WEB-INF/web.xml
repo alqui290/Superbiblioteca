@@ -13,8 +13,8 @@
         <servlet-class>br.edu.ifpr.SuperBiblioteca.Controlers.RegistrarEmprestimos</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListarLivroUser</servlet-name>
-        <servlet-class>br.edu.ifpr.SuperBiblioteca.Controlers.ListarLivroUser</servlet-class>
+        <servlet-name>ListarUser</servlet-name>
+        <servlet-class>br.edu.ifpr.SuperBiblioteca.Controlers.ListarUser</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Reserva</servlet-name>
@@ -53,8 +53,8 @@
         <url-pattern>/RegistrarEmprestimos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListarLivroUser</servlet-name>
-        <url-pattern>/ListarLivroUser</url-pattern>
+        <servlet-name>ListarUser</servlet-name>
+        <url-pattern>/ListarUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Reserva</servlet-name>
@@ -86,6 +86,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>Menu</welcome-file>
     </welcome-file-list>
 </web-app>

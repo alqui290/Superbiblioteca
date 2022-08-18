@@ -12,7 +12,7 @@
         <title>Publico</title>
     </head>
     <body>
-        <div><a><button>Logar</button></a></div>
+        <div><a href="Login"><button>Logar</button></a></div>
         <div></div>
     </body>
 </html>
