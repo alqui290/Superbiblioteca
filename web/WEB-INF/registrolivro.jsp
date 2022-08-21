@@ -12,5 +12,13 @@
         <title>Cadastrar novos livros</title>
     </head>
     <body>
+        <form method="post" action="CadastrarLivro">
+            Titulo:<input name="titulo" type="text" required>
+            Autor:<input name="nomeautor" type="text" required>
+            Genero:<input name="genero" type="text" required>
+            Editora:<input name="editora" type="text" required>
+            Ano de publicação:<input name="ano" type="number" max="2020" required>
+            <button type="submit">Enviar</button>
+        </form>
     </body>
 </html>

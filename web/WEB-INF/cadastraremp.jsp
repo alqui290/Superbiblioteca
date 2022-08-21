@@ -12,5 +12,10 @@
         <title>Registrar um umprestimo</title>
     </head>
     <body>
+        <form method="post" action="RegistrarEmprestimos">
+            ID de usuario:<input type="number" name="userid" required>
+            ID de livro:<input type="number" name="livroid" required>
+            <input value="registrar" type="submit">
+        </form>
     </body>
 </html>

@@ -7,7 +7,6 @@ package br.edu.ifpr.SuperBiblioteca.Controlers;
 import br.edu.ifpr.SuperBiblioteca.Entities.Usuarios;
 import br.edu.ifpr.SuperBiblioteca.Models.UsuarioModel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -25,8 +25,15 @@ public class CadastrarUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession sessao = request.getSession(false);
+        if(sessao != null && sessao.getAttribute("autenticado") != null
+                && (boolean)sessao.getAttribute("autenticado") == true) {
             request.getRequestDispatcher("WEB-INF/cadastro.jsp").
                 forward(request, response);
+        }
+        else {           
+            response.sendRedirect("Publico");
+        }
     }
 
     @Override
@@ -46,7 +53,12 @@ public class CadastrarUsuarios extends HttpServlet {
             UsuarioModel model = new UsuarioModel();
             model.cadastrar(new Usuarios(nome, username, email, senha, idade));
             
-            response.sendRedirect("Menu");
+            request.setAttribute("tipo", "usuario");
+            request.setAttribute("tipo2", "CadastrarUsuarios");
+            request.setAttribute("nome", nome);
+            
+            request.getRequestDispatcher("WEB-INF/sucesso.jsp").
+                    forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }

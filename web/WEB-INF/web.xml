@@ -40,6 +40,10 @@
         <servlet-name>Perfil</servlet-name>
         <servlet-class>br.edu.ifpr.SuperBiblioteca.Controlers.Perfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarLivro</servlet-name>
+        <servlet-class>br.edu.ifpr.SuperBiblioteca.Controlers.ListarLivro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Publico</servlet-name>
         <url-pattern>/Publico</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>Perfil</servlet-name>
         <url-pattern>/Perfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarLivro</servlet-name>
+        <url-pattern>/ListarLivro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -15,12 +15,12 @@
     </head>
     <body>
         <div><a href=""><button>Perfil de usuario</button></a></div>
-        <div><a><button>Catalogo</button></a></div>
+        <div><a href="ListarLivro"><button>Catalogo</button></a></div>
         <div><a><button>Seus Emprestimos</button></a></div>
         <div><a><button>Fazer reserva</button></a></div>
         <c:if test="${biblio || adm}">
         <div><a href="CadastrarUsuarios"><button>Cadastrar usuario</button></a></div>
-        <div><a><button>Cadastrar livro</button></a></div>
+        <div><a href="CadastrarLivro"><button>Cadastrar livro</button></a></div>
         <div><a><button>Listar todos emprestimos</button></a></div>
         <c:if test="${adm}">
         <div><a><button>Listar usuarios</button></a></div> 

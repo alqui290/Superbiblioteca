@@ -89,12 +89,17 @@ public class Login extends HttpServlet {
                     Cookie adm = new Cookie("adm", String.valueOf(u.isAdm()));
                     cookie.setMaxAge(60*60*24*30);
                     response.addCookie(adm);
+                    Cookie identidade = new Cookie("identidade", String.valueOf(u.getId()));
+                    cookie.setMaxAge(60*60*24*30);
+                    response.addCookie(identidade);
                 }
                 else{
                     Cookie biblio = new Cookie("biblio", String.valueOf(u.isBiblio()));
                     response.addCookie(biblio);
                     Cookie adm = new Cookie("adm", String.valueOf(u.isAdm()));
                     response.addCookie(adm);
+                    Cookie identidade = new Cookie("identidade", String.valueOf(u.getId()));
+                    response.addCookie(identidade);
                 }
                 
                 response.sendRedirect("Menu");
