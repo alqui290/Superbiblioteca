@@ -35,28 +35,9 @@ public class UsuarioDAO {
         connection.close();
     }
     
-    public void alterar(Usuarios u) throws SQLException{
-        String sql = "UPDATE USUARIOS SET NOME=?, EMAIL=?,USERNAME=?, IDADE=?, SENHA=? WHERE ID=?";
-        
-        Connection connection = new ConnectionFactory().getConnection();
-        
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, u.getNome());
-        stmt.setString(2, u.getEmail());
-        stmt.setString(3, u.getUsername());
-        stmt.setInt(4, u.getIdade());
-        stmt.setString(5, u.getSenha());
-        stmt.setInt(6, u.getId());
-        
-        stmt.execute();
-        
-        stmt.close();
-        connection.close();
-    }
-    
     public ArrayList exibir() throws SQLException{
         ArrayList<Usuarios> usuario = new ArrayList();
-        String sql = "SELECT ID, NOME, CURSO, EMAIL, IDADE, SENHA FROM USUARIOS";
+        String sql = "SELECT ID, NOME, USERNAME, EMAIL, IDADE, SENHA FROM USUARIOS";
         
         Connection connection = new ConnectionFactory().getConnection();
         
@@ -72,6 +53,26 @@ public class UsuarioDAO {
         connection.close();
         
         return usuario;
+    }
+    
+    public Usuarios exibir(int id) throws SQLException{
+        String sql = "SELECT ID, NOME, USERNAME, EMAIL, IDADE, SENHA FROM USUARIOS WHERE ID=?";
+        
+        Connection connection = new ConnectionFactory().getConnection();
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        if(rs.next()){
+            Usuarios u = new Usuarios(rs.getString("NOME"), rs.getString("USERNAME"), rs.getString("EMAIL"), rs.getString("SENHA"), rs.getInt("IDADE"), rs.getInt("ID"));
+            return u;
+        }
+        
+        connection.close();
+        
+        return null;
     }
     
     public Usuarios logar(Usuarios u) throws SQLException{
@@ -94,4 +95,20 @@ public class UsuarioDAO {
         
         return null;
     }
+    
+    public void deletar(int id) throws SQLException{
+        String sql = "DELETE FROM USUARIOS WHERE ID=?";
+        
+        Connection connection = new ConnectionFactory().getConnection();
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        
+        stmt.execute();
+        
+        stmt.close();
+        
+        connection.close();
+    }
+    
 }

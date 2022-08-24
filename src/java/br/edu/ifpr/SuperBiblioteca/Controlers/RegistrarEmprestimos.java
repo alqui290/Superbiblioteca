@@ -7,11 +7,11 @@ package br.edu.ifpr.SuperBiblioteca.Controlers;
 import br.edu.ifpr.SuperBiblioteca.Entities.Emprestimo;
 import br.edu.ifpr.SuperBiblioteca.Models.EmprestimoModel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,8 +31,18 @@ public class RegistrarEmprestimos extends HttpServlet {
         HttpSession sessao = request.getSession(false);
         if(sessao != null && sessao.getAttribute("autenticado") != null
                 && (boolean)sessao.getAttribute("autenticado") == true) {
-            request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
-                forward(request, response);
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if("biblio".equals(cookie.getName()) || "adm".equals(cookie.getName())){
+                    if("true".equals(cookie.getValue())){
+                        request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
+                        forward(request, response);
+                        break;
+                    } 
+                }
+            }
+            response.sendRedirect("Menu");
+            
         }
         else {           
             response.sendRedirect("Publico");
@@ -46,14 +56,38 @@ public class RegistrarEmprestimos extends HttpServlet {
             throws ServletException, IOException {
         try {
             int idl, idu;
+            String senha;
+            
             
             idl = Integer.parseInt(request.getParameter("livroid"));
             idu = Integer.parseInt(request.getParameter("userid"));
+            senha = request.getParameter("senha");
             
             EmprestimoModel model = new EmprestimoModel();
-            model.registrar(new Emprestimo(idl, idu));
             
-            response.sendRedirect("Menu");
+            if(model.testar(idl)){
+                request.setAttribute("livro", idl);
+                request.setAttribute("user", idu);
+                request.setAttribute("teste", model.testar(idl));
+                request.setAttribute("msg", "Livro já esta emprestado!");
+                
+                
+                request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
+                forward(request, response);
+            }
+            else if(model.Autenticar(idu, senha)){
+                model.registrar(new Emprestimo(idl, idu));
+
+                response.sendRedirect("Menu");
+            }
+            else{
+                request.setAttribute("livro", idl);
+                request.setAttribute("user", idu);
+                request.setAttribute("teste", !model.Autenticar(idu, senha));
+                request.setAttribute("msg", "senha ou usuario incorretos!");
+                request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
+                forward(request, response);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarEmprestimos.class.getName()).log(Level.SEVERE, null, ex);
         }

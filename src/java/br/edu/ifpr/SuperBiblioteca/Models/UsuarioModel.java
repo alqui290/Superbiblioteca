@@ -24,7 +24,15 @@ public class UsuarioModel {
         return dao.exibir();
     }
     
+    public Usuarios getUsuario(int id) throws SQLException {
+        return dao.exibir(id);
+    }
+    
     public Usuarios logar(Usuarios u) throws SQLException{
         return dao.logar(u);
+    }
+    
+    public void deletar(int id) throws SQLException{
+        dao.deletar(id);
     }
 }

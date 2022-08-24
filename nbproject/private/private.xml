@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/CadastrarUsuarios.java</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/web/WEB-INF/menu.jsp</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/Publico.java</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/web/WEB-INF/web.xml</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/web/WEB-INF/login.jsp</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/Menu.java</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/web/WEB-INF/cadastro.jsp</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/Login.java</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/web/WEB-INF/cadastraremp.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

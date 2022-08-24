@@ -15,6 +15,7 @@ public class Livros {
     private int anopubli;
     private String editora;
     private String genero;
+    private Boolean emprestado;
 
     public Livros(int id, String titulo, String autor, int anopubli, String editora, String genero) {
         this.id = id;
@@ -57,5 +58,9 @@ public class Livros {
 
     public String getGenero() {
         return genero;
+    }
+
+    public Boolean getEmprestado() {
+        return emprestado;
     }
 }

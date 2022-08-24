@@ -23,7 +23,7 @@
                 <td>Editora</td>
                 <td>Ano de publicação</td>
             </tr>
-            <c:forEach varStatus="status" var="livros" items="${livro}">
+            <c:forEach var="livros" items="${livro}">
                 <tr>
                     <td>${livros.id}</td>
                     <td>${livros.titulo}</td>

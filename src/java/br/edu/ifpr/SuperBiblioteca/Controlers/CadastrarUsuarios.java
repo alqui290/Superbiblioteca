@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +29,18 @@ public class CadastrarUsuarios extends HttpServlet {
             HttpSession sessao = request.getSession(false);
         if(sessao != null && sessao.getAttribute("autenticado") != null
                 && (boolean)sessao.getAttribute("autenticado") == true) {
-            request.getRequestDispatcher("WEB-INF/cadastro.jsp").
-                forward(request, response);
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie : cookies) {
+                if("biblio".equals(cookie.getName()) || "adm".equals(cookie.getName())){
+                    if("true".equals(cookie.getValue())){
+                        request.getRequestDispatcher("WEB-INF/cadastro.jsp").
+                        forward(request, response);
+                        break;
+                    } 
+                }
+            }
+            response.sendRedirect("Menu");
+            
         }
         else {           
             response.sendRedirect("Publico");

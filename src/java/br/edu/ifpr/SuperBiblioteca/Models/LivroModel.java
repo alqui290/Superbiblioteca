@@ -26,4 +26,8 @@ public class LivroModel {
         return dao.exibir(); 
     }
     
+    public void deletar(int id) throws SQLException{
+        dao.deletar(id);
+    }
+    
 }

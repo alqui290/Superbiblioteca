@@ -20,5 +20,6 @@
             Idade:<input type="number" name="idade" min=16 required>
             <input type="submit">
         </form>
+        <a href="Menu"><button>Cancelar</button></a>
     </body>
 </html>

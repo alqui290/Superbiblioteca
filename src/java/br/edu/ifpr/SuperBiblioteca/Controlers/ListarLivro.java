@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,9 +36,11 @@ public class ListarLivro extends HttpServlet {
             if(sessao != null && sessao.getAttribute("autenticado") != null
                     && (boolean)sessao.getAttribute("autenticado") == true) {
                 
-
+                
                 request.getRequestDispatcher("WEB-INF/catalogo.jsp").
-                    forward(request, response);
+                forward(request, response);
+                         
+                
             }
             else {           
                 response.sendRedirect("Publico");

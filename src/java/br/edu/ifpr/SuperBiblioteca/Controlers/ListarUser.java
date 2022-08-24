@@ -6,14 +6,15 @@ package br.edu.ifpr.SuperBiblioteca.Controlers;
 
 import br.edu.ifpr.SuperBiblioteca.Models.UsuarioModel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,8 +37,26 @@ public class ListarUser extends HttpServlet {
         try {
             UsuarioModel model = new UsuarioModel();
             request.setAttribute("usuario", model.getUsuario());
-            request.getRequestDispatcher("WEB-INF/Usuario.jsp").
-                forward(request, response);
+            
+            HttpSession sessao = request.getSession(false);
+            
+            if(sessao != null && sessao.getAttribute("autenticado") != null
+                && (boolean)sessao.getAttribute("autenticado") == true) {
+                Cookie[] cookies = request.getCookies();
+                for (Cookie cookie : cookies) {
+                    if("adm".equals(cookie.getName())){
+                        if("true".equals(cookie.getValue())){
+                            request.getRequestDispatcher("WEB-INF/listarusuarios.jsp").
+                            forward(request, response);
+                            break;
+                        } 
+                    }
+                }
+                response.sendRedirect("Menu");
+            }
+            else {           
+                response.sendRedirect("Publico");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ListarUser.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -57,4 +57,19 @@ public class LivroDAO {
         
         return livro;
     }
+    
+    public void deletar(int id) throws SQLException{
+        String sql = "DELETE FROM LIVROS WHERE ID=?";
+        
+        Connection connection = new ConnectionFactory().getConnection();
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        
+        stmt.execute();
+        
+        stmt.close();
+        
+        connection.close();
+    }
 }

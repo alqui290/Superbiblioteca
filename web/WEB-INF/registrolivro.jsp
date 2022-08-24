@@ -20,5 +20,6 @@
             Ano de publicação:<input name="ano" type="number" max="2020" required>
             <button type="submit">Enviar</button>
         </form>
+        <a href="Menu"><button>Cancelar</button></a>
     </body>
 </html>
