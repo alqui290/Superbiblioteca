@@ -25,6 +25,10 @@ public class EmprestimoModel {
         return dao.testar(id);
     }
     
+    public Boolean testaru(int id) throws SQLException{
+        return dao.testaru(id);
+    }
+    
     public ArrayList listar() throws SQLException{
         return dao.listar();
     }

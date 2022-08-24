@@ -63,6 +63,33 @@ public class EmpDAO {
         
     }
     
+    public Boolean testaru(int id) throws SQLException{
+        Calendar c = Calendar.getInstance();
+        Date date = new Date(c.getTimeInMillis());
+        String sql = "SELECT DATAFIM FROM PUNICAO WHERE USUARIOS_ID = ?";
+        
+        Connection connection = new ConnectionFactory().getConnection();
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        if(rs.next()){
+            if(date.after(rs.getDate("DATAFIM"))){
+                return true;
+            }
+        }
+        else{
+            return true;
+        }
+        
+        connection.close();
+        
+        return false;
+        
+    }
+    
     public ArrayList listar() throws SQLException{
         
         ArrayList<Emprestimo> emp = new ArrayList();

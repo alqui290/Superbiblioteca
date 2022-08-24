@@ -75,16 +75,24 @@ public class RegistrarEmprestimos extends HttpServlet {
                 request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
                 forward(request, response);
             }
-            else if(model.Autenticar(idu, senha)){
+            else if(model.Autenticar(idu, senha) && model.testaru(idu)){
                 model.registrar(new Emprestimo(idl, idu));
 
                 response.sendRedirect("Menu");
             }
-            else{
+            else if(!model.Autenticar(idu, senha)){
                 request.setAttribute("livro", idl);
                 request.setAttribute("user", idu);
                 request.setAttribute("teste", !model.Autenticar(idu, senha));
                 request.setAttribute("msg", "senha ou usuario incorretos!");
+                request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
+                forward(request, response);
+            }
+            else{
+                request.setAttribute("livro", idl);
+                request.setAttribute("user", idu);
+                request.setAttribute("teste", !model.testaru(idu));
+                request.setAttribute("msg", "Usuario sendo punido por atrasar um ou mais livros!");
                 request.getRequestDispatcher("WEB-INF/cadastraremp.jsp").
                 forward(request, response);
             }
