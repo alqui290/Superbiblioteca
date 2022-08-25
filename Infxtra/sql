@@ -34,19 +34,6 @@ CREATE TABLE Emprestimos(
         (Usuarios_id) REFERENCES Usuarios(id)
 );
 
-CREATE TABLE Reserva(
-    id INT NOT NULL PRIMARY KEY GENERATED ALWAYS 
-    AS IDENTITY (START WITH 1, increment by 1),
-    datain DATE NOT NULL,
-    datafim DATE,
-    Usuarios_id INT NOT NULL,
-    Livros_id INT NOT NULL,
-    CONSTRAINT fk_livro_reserva FOREIGN KEY 
-        (Livros_id) REFERENCES Livros(id),
-    CONSTRAINT fk_usuarios_reserva FOREIGN KEY
-        (Usuarios_id) REFERENCES Usuarios(id)
-);
-
 CREATE TABLE Punicao(
     id INT NOT NULL PRIMARY KEY GENERATED ALWAYS 
     AS IDENTITY (START WITH 1, increment by 1),
