@@ -78,13 +78,10 @@ public class EmpDAO {
         if(rs.next()){
             return date.after(rs.getDate("DATAFIM"));
         }
-        else{
-            return true;
-        }
         
         connection.close();
         
-        return false;
+        return true;
         
     }
     
