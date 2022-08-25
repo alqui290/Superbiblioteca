@@ -76,9 +76,7 @@ public class EmpDAO {
         ResultSet rs = stmt.executeQuery();
         
         if(rs.next()){
-            if(date.after(rs.getDate("DATAFIM"))){
-                return true;
-            }
+            return rs.getDate("DATAFIM"));
         }
         else{
             return true;
