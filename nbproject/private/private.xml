@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Models/EmprestimoModel.java</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/RegistrarEmprestimos.java</file>
-            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/DAOs/EmpDAO.java</file>
+            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/Reserva.java</file>
+            <file>file:/home/alquimista290/NetBeansProjects/SuperBiblioteca/src/java/br/edu/ifpr/SuperBiblioteca/Controlers/RemoverUsuario.java</file>
         </group>
     </open-files>
 </project-private>
